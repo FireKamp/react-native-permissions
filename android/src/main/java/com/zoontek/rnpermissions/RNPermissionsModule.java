@@ -63,8 +63,10 @@ public class RNPermissionsModule extends ReactContextBaseJavaModule implements P
       logv("resultCode:" + resultCode);
 
       Request request = mRequests.get(requestCode);
-      request.callback.invoke();
-      mRequests.remove(requestCode);
+      if (request != null) {
+        request.callback.invoke();
+        mRequests.remove(requestCode);
+      }
     }
   };
 
